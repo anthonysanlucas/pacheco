@@ -84,10 +84,13 @@ a {
 }
 
 .display-hero {
+	max-inline-size: 100%;
 	font-size: clamp(3.1rem, 11vw, 9.5rem);
 	font-weight: 800;
 	letter-spacing: -0.07em;
 	line-height: 0.86;
+	word-break: normal;
+	overflow-wrap: normal;
 }
 
 .display-section {
@@ -133,6 +136,22 @@ a {
 
 .display-contact > span {
 	white-space: nowrap;
+}
+
+.hero-next-arrow {
+	display: inline-block;
+	flex-shrink: 0;
+	animation: hero-next-arrow 1.4s ease-in-out infinite;
+}
+
+@keyframes hero-next-arrow {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(0.35rem);
+	}
 }
 
 [data-motion-ready='true'] [data-reveal] {

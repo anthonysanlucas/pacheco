@@ -17,10 +17,13 @@ const { identity } = Astro.props;
 
 		<a
 			href="#contacto"
-			class="group inline-flex min-h-11 items-center gap-3 text-sm font-bold uppercase tracking-[0.12em] no-underline"
+			class="group relative inline-flex min-h-11 items-center text-sm font-bold uppercase tracking-[0.12em] no-underline"
 		>
-			Hablemos
-			<span class="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true">→</span>
+			<span>Hablemos</span>
+			<span
+				class="pointer-events-none absolute inset-x-0 bottom-1 h-px origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"
+				aria-hidden="true"
+			></span>
 		</a>
 	</div>
 </header>

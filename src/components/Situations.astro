@@ -9,25 +9,33 @@ const situations = [
 
 <section id="situaciones" class="border-y border-ink bg-paper-bright py-24 md:py-32">
 	<div class="page-shell">
-		<div class="grid gap-12 md:grid-cols-12 md:gap-8">
-			<div class="md:col-span-5">
-				<h2 class="display-section m-0 max-w-[8ch] uppercase" data-reveal>¿Te suena familiar?</h2>
+		<div class="grid gap-y-12 md:grid-cols-12 md:grid-rows-[auto_1fr] md:gap-x-8 md:gap-y-0">
+			<div class="min-w-0 md:col-span-4 md:row-start-1">
+				<h2 class="display-heading display-heading--split" data-reveal>¿Te suena familiar?</h2>
 			</div>
 
-			<ol class="m-0 list-none border-t border-ink p-0 md:col-span-7">
+			<ol
+				class="m-0 list-none border-t border-ink/70 p-0 md:col-span-7 md:col-start-6 md:row-span-2 md:row-start-1"
+			>
 				{
 					situations.map((situation, index) => (
-						<li class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-ink/35 py-7 md:grid-cols-[4rem_1fr] md:py-9" data-reveal>
+						<li
+							class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-ink/30 py-7 md:grid-cols-[3.5rem_1fr] md:gap-6 md:py-8"
+							data-reveal
+						>
 							<span class="pt-1 text-xs font-bold tabular-nums tracking-[0.12em]">{String(index + 1).padStart(2, '0')}</span>
-							<p class="m-0 max-w-[28ch] text-2xl leading-[1.05] font-bold tracking-[-0.035em] md:text-4xl">{situation}</p>
+							<p class="m-0 max-w-[27ch] text-2xl leading-[1.08] font-bold tracking-[-0.035em] md:text-[2rem]">{situation}</p>
 						</li>
 					))
 				}
 			</ol>
-		</div>
 
-		<p class="mt-14 mb-0 max-w-[38ch] text-xl leading-snug md:mt-20 md:ml-auto md:text-2xl" data-reveal>
-			La respuesta no siempre es comunicar más. Primero hay que entender qué está realmente en juego.
-		</p>
+			<p
+				class="m-0 max-w-[29ch] border-t border-ink/35 pt-6 text-lg leading-snug md:col-span-4 md:row-start-2 md:self-end md:text-xl"
+				data-reveal
+			>
+				La respuesta no siempre es comunicar más. Primero hay que entender qué está realmente en juego.
+			</p>
+		</div>
 	</div>
 </section>

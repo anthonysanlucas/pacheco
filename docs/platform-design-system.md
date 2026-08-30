@@ -22,7 +22,7 @@ Un titular correcto debe:
 
 | Nivel | Uso | Clase actual | Escala | Ancho orientativo | Líneas en desktop |
 | --- | --- | --- | --- | --- | --- |
-| Hero | Mensaje principal de apertura | `.display-hero` | `clamp(3.1rem, 11vw, 9.5rem)` | hasta `12ch` | 2–4 |
+| Hero | Mensaje principal de apertura | `.display-hero` | `clamp(3.1rem, 11vw, 9.5rem)` | hasta `12ch` | 3–6 |
 | Sección amplia | Título sin recurso lateral dominante | `.display-section` | `clamp(2.9rem, 8vw, 7.5rem)` | 8–12 `ch` | 2–4 |
 | Sección dividida | Título junto a imagen, lista o contenido | `.display-heading.display-heading--split` | `clamp(2.5rem, 4.2vw, 4.25rem)` | hasta `15ch` | 3–5 |
 | Declaración | Frase conceptual excepcional | `.display-criterion` | `clamp(3rem, 7.8vw, 7.75rem)` | ancho de su columna | 2–4 |
