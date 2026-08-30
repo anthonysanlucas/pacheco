@@ -1,37 +1,37 @@
 [
-	{
-		"id": "roberto-esteves-01",
-		"name": "Roberto Esteves",
-		"role": "Gerente General de Massap",
-		"quote": "PACHECO nos ayudó a ordenar una conversación compleja y a encontrar un mensaje que el equipo pudiera sostener con claridad. Su criterio nos permitió comunicar lo importante, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
-		"image": ""
-	},
-	{
-		"id": "roberto-esteves-02",
-		"name": "Roberto Esteves",
-		"role": "Gerente General de Massap",
-		"quote": "PACHECO nos ayudó a ordenar una conversación compleja y a encontrar un mensaje que el equipo pudiera sostener con claridad. Su criterio nos permitió comunicar lo importante, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
-		"image": ""
-	},
-	{
-		"id": "roberto-esteves-03",
-		"name": "Roberto Esteves",
-		"role": "Gerente General de Massap",
-		"quote": "PACHECO nos ayudó a ordenar una conversación compleja y a encontrar un mensaje que el equipo pudiera sostener con claridad. Su criterio nos permitió comunicar lo importante, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
-		"image": ""
-	},
-	{
-		"id": "roberto-esteves-04",
-		"name": "Roberto Esteves",
-		"role": "Gerente General de Massap",
-		"quote": "PACHECO nos ayudó a ordenar una conversación compleja y a encontrar un mensaje que el equipo pudiera sostener con claridad. Su criterio nos permitió comunicar lo importante, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
-		"image": ""
-	},
-	{
-		"id": "roberto-esteves-05",
-		"name": "Roberto Esteves",
-		"role": "Gerente General de Massap",
-		"quote": "PACHECO nos ayudó a ordenar una conversación compleja y a encontrar un mensaje que el equipo pudiera sostener con claridad. Su criterio nos permitió comunicar lo importante, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
-		"image": ""
-	}
+  {
+    "id": "roberto-esteves-01",
+    "name": "Roberto Esteves",
+    "role": "Gerente General de Massap",
+    "quote": "Nos ayudó a ordenar una conversación compleja y convertirla en un mensaje claro y coherente para todo el equipo. Su criterio fue clave para comunicar lo esencial, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
+    "image": "/roberto.jpeg"
+  },
+  {
+    "id": "roberto-esteves-02",
+    "name": "Roberto Esteves",
+    "role": "Gerente General de Massap",
+    "quote": "Nos ayudó a ordenar una conversación compleja y convertirla en un mensaje claro y coherente para todo el equipo. Su criterio fue clave para comunicar lo esencial, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
+    "image": "/roberto.jpeg"
+  },
+  {
+    "id": "roberto-esteves-03",
+    "name": "Roberto Esteves",
+    "role": "Gerente General de Massap",
+    "quote": "Nos ayudó a ordenar una conversación compleja y convertirla en un mensaje claro y coherente para todo el equipo. Su criterio fue clave para comunicar lo esencial, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
+    "image": "/roberto.jpeg"
+  },
+  {
+    "id": "roberto-esteves-04",
+    "name": "Roberto Esteves",
+    "role": "Gerente General de Massap",
+    "quote": "Nos ayudó a ordenar una conversación compleja y convertirla en un mensaje claro y coherente para todo el equipo. Su criterio fue clave para comunicar lo esencial, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
+    "image": "/roberto.jpeg"
+  },
+  {
+    "id": "roberto-esteves-05",
+    "name": "Roberto Esteves",
+    "role": "Gerente General de Massap",
+    "quote": "Nos ayudó a ordenar una conversación compleja y convertirla en un mensaje claro y coherente para todo el equipo. Su criterio fue clave para comunicar lo esencial, actuar con seguridad y evitar ruido innecesario en un momento decisivo.",
+    "image": "/roberto.jpeg"
+  }
 ]

@@ -278,6 +278,8 @@ No usar frases vacías como “más de X años de experiencia” si no están co
 
 ## 7. Dirección visual
 
+Las reglas implementables y los criterios de auditoría se mantienen en [`docs/platform-design-system.md`](./platform-design-system.md). En caso de ambigüedad visual, ese documento funciona como fuente de verdad y esta definición conserva el criterio narrativo y estratégico.
+
 ### Concepto
 
 **Editorial estratégico:** sobrio, directo, humano y con tensión tipográfica. Debe sentirse más cercano a una pieza de pensamiento que a una web de agencia.

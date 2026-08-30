@@ -1,7 +1,10 @@
 export interface Identity {
 	name: string;
 	logoSrc: string;
+	profileSrc: string;
+	profileAlt: string;
 	portraitSrc: string;
+	portraitAlt: string;
 }
 
 export interface ContactDetails {
@@ -17,16 +20,18 @@ export interface CaseStudy {
 
 export const identity: Identity = {
 	name: 'PACHECO',
-	// Reemplazar con la ruta del logo oficial cuando esté disponible.
-	logoSrc: '',
-	// Reemplazar con la ruta del retrato o video aprobado.
-	portraitSrc: ''
+	logoSrc: '/pacheco.png',
+	profileSrc: '/me.webp',
+	profileAlt: 'Retrato frontal de la persona principal de PACHECO',
+	// Fotografía temporal de Pavel Danilyuk disponible bajo la licencia de Pexels.
+	portraitSrc: 'https://images.pexels.com/photos/7518946/pexels-photo-7518946.jpeg?auto=compress&cs=tinysrgb&w=900&h=1125&fit=crop',
+	portraitAlt: 'Dos profesionales revisan información durante una reunión de trabajo'
 };
 
 export const contact: ContactDetails = {
-	// Ejemplo esperado: https://wa.me/593...
-	whatsappUrl: '',
-	email: ''
+	// Datos temporales para visualizar las acciones. Reemplazar antes de publicar.
+	whatsappUrl: 'https://wa.me/593000000000?text=Hola%2C%20quisiera%20conversar%20con%20PACHECO.',
+	email: 'contacto@pacheco.test'
 };
 
 export const cases: CaseStudy[] = [

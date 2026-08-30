@@ -44,8 +44,10 @@ a {
 	touch-action: manipulation;
 }
 
-a {
-	color: inherit;
+@layer base {
+	a {
+		color: inherit;
+	}
 }
 
 ::selection {
@@ -95,18 +97,42 @@ a {
 	line-height: 0.9;
 }
 
-.display-criterion {
-	font-size: clamp(3.25rem, 10.6vw, 10.25rem);
+.display-heading {
+	max-inline-size: 100%;
+	margin: 0;
 	font-weight: 800;
-	letter-spacing: -0.075em;
-	line-height: 0.79;
+	letter-spacing: -0.06em;
+	line-height: 0.9;
+	text-transform: uppercase;
+	text-wrap: balance;
+	word-break: normal;
+	overflow-wrap: normal;
+}
+
+.display-heading--split {
+	max-inline-size: 15ch;
+	font-size: clamp(2.5rem, 4.2vw, 4.25rem);
+}
+
+.display-criterion {
+	max-inline-size: 100%;
+	font-size: clamp(3rem, 7.8vw, 7.75rem);
+	font-weight: 800;
+	letter-spacing: -0.07em;
+	line-height: 0.84;
+	word-break: normal;
+	overflow-wrap: normal;
 }
 
 .display-contact {
-	font-size: clamp(3.4rem, 10vw, 9rem);
+	font-size: clamp(2.25rem, 9.5vw, 8rem);
 	font-weight: 800;
 	letter-spacing: -0.07em;
-	line-height: 0.86;
+	line-height: 0.84;
+}
+
+.display-contact > span {
+	white-space: nowrap;
 }
 
 [data-motion-ready='true'] [data-reveal] {

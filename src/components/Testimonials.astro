@@ -1,186 +1,181 @@
 ---
-import testimonials from '../data/testimonials.json';
+import testimonials from "../data/testimonials.json";
 
 interface Testimonial {
-	id: string;
-	name: string;
-	role: string;
-	quote: string;
-	image: string;
+  id: string;
+  name: string;
+  role: string;
+  quote: string;
+  image: string;
 }
 
 const items = testimonials as Testimonial[];
 const initials = (name: string) =>
-	name
-		.split(' ')
-		.slice(0, 2)
-		.map((part) => part[0])
-		.join('');
+  name
+    .split(" ")
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("");
 ---
 
-<section id="testimonios" class="overflow-hidden border-y border-paper/20 bg-ink py-24 text-paper md:py-32" data-testimonials>
-	<div class="page-shell">
-		<div class="grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
-			<div class="md:col-span-9">
-				<h2 class="display-section m-0 max-w-[10ch] uppercase" data-reveal>
-					Lo que dicen quienes confiaron en PACHECO.
-				</h2>
-			</div>
+<section
+  id="testimonios"
+  class="overflow-hidden border-y border-paper/20 bg-ink py-24 text-paper md:py-32"
+>
+  <div class="page-shell">
+    <h2
+      class="m-0 text-[clamp(2.6rem,5.2vw,4.75rem)] leading-[0.88] font-extrabold tracking-[-0.06em] uppercase"
+      aria-label="Lo que dicen quienes confian en PACHECO"
+      data-reveal
+    >
+      <span class="block md:whitespace-nowrap">Lo que dicen quienes</span>
+      <span class="block md:whitespace-nowrap">confian en PACHECO.</span>
+    </h2>
+  </div>
 
-			<div class="md:col-span-3 md:flex md:justify-end">
-				<button
-					type="button"
-					class="min-h-11 cursor-pointer border-b border-paper bg-transparent px-0 text-xs font-bold tracking-[0.12em] text-paper uppercase focus-visible:outline-paper"
-					aria-pressed="false"
-					data-testimonials-toggle
-				>
-					Pausar movimiento
-				</button>
-			</div>
-		</div>
-	</div>
+  <div class="testimonials-viewport mt-16 md:mt-20">
+    <div class="testimonials-track">
+      <ul class="testimonials-group m-0 list-none p-0" role="list">
+        {
+          items.map((testimonial) => (
+            <li
+              class="testimonial-card flex min-h-[24rem] flex-col justify-between border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
+              data-testimonial-id={testimonial.id}
+            >
+              <div class="flex items-center gap-4 border-b border-ink/20 pb-6">
+                {testimonial.image ? (
+                  <img
+                    src={testimonial.image}
+                    width="56"
+                    height="56"
+                    loading="lazy"
+                    alt=""
+                    class="size-14 shrink-0 rounded-full object-cover grayscale"
+                  />
+                ) : (
+                  <span
+                    class="flex size-14 shrink-0 items-center justify-center rounded-full border border-ink text-sm font-bold tracking-[0.08em]"
+                    aria-hidden="true"
+                  >
+                    {initials(testimonial.name)}
+                  </span>
+                )}
 
-	<div class="testimonials-viewport mt-16 md:mt-20">
-		<div class="testimonials-track">
-			<ul class="testimonials-group m-0 list-none p-0" role="list">
-				{
-					items.map((testimonial) => (
-						<li class="testimonial-card flex min-h-[24rem] flex-col justify-between border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9" data-testimonial-id={testimonial.id}>
-							<div class="flex items-center gap-4 border-b border-ink/20 pb-6">
-								{testimonial.image ? (
-									<img
-										src={testimonial.image}
-										width="56"
-										height="56"
-										loading="lazy"
-										alt=""
-										class="size-14 shrink-0 rounded-full object-cover grayscale"
-									/>
-								) : (
-									<span class="flex size-14 shrink-0 items-center justify-center rounded-full border border-ink text-sm font-bold tracking-[0.08em]" aria-hidden="true">
-										{initials(testimonial.name)}
-									</span>
-								)}
+                <div>
+                  <p class="m-0 text-lg leading-tight font-bold">
+                    {testimonial.name}
+                  </p>
+                  <p class="mt-1 mb-0 text-sm leading-snug text-muted">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
 
-								<div>
-									<p class="m-0 text-lg leading-tight font-bold">{testimonial.name}</p>
-									<p class="mt-1 mb-0 text-sm leading-snug text-muted">{testimonial.role}</p>
-								</div>
-							</div>
+              <blockquote class="m-0 pt-9 text-xl leading-snug font-bold tracking-[-0.025em] md:text-2xl">
+                “{testimonial.quote}”
+              </blockquote>
+            </li>
+          ))
+        }
+      </ul>
 
-							<blockquote class="m-0 pt-9 text-xl leading-snug font-bold tracking-[-0.025em] md:text-2xl">
-								“{testimonial.quote}”
-							</blockquote>
-						</li>
-					))
-				}
-			</ul>
-
-			<ul class="testimonials-group m-0 list-none p-0" aria-hidden="true">
-				{
-					items.map((testimonial) => (
-						<li class="testimonial-card flex min-h-[24rem] flex-col justify-between border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9" data-testimonial-id={testimonial.id}>
-							<div class="flex items-center gap-4 border-b border-ink/20 pb-6">
-								{testimonial.image ? (
-									<img
-										src={testimonial.image}
-										width="56"
-										height="56"
-										loading="lazy"
-										alt=""
-										class="size-14 shrink-0 rounded-full object-cover grayscale"
-									/>
-								) : (
-									<span class="flex size-14 shrink-0 items-center justify-center rounded-full border border-ink text-sm font-bold tracking-[0.08em]" aria-hidden="true">
-										{initials(testimonial.name)}
-									</span>
-								)}
-								<div>
-									<p class="m-0 text-lg leading-tight font-bold">{testimonial.name}</p>
-									<p class="mt-1 mb-0 text-sm leading-snug text-muted">{testimonial.role}</p>
-								</div>
-							</div>
-							<blockquote class="m-0 pt-9 text-xl leading-snug font-bold tracking-[-0.025em] md:text-2xl">
-								“{testimonial.quote}”
-							</blockquote>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-	</div>
+      <ul class="testimonials-group m-0 list-none p-0" aria-hidden="true">
+        {
+          items.map((testimonial) => (
+            <li
+              class="testimonial-card flex min-h-[24rem] flex-col justify-between border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
+              data-testimonial-id={testimonial.id}
+            >
+              <div class="flex items-center gap-4 border-b border-ink/20 pb-6">
+                {testimonial.image ? (
+                  <img
+                    src={testimonial.image}
+                    width="56"
+                    height="56"
+                    loading="lazy"
+                    alt=""
+                    class="size-14 shrink-0 rounded-full object-cover grayscale"
+                  />
+                ) : (
+                  <span
+                    class="flex size-14 shrink-0 items-center justify-center rounded-full border border-ink text-sm font-bold tracking-[0.08em]"
+                    aria-hidden="true"
+                  >
+                    {initials(testimonial.name)}
+                  </span>
+                )}
+                <div>
+                  <p class="m-0 text-lg leading-tight font-bold">
+                    {testimonial.name}
+                  </p>
+                  <p class="mt-1 mb-0 text-sm leading-snug text-muted">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+              <blockquote class="m-0 pt-9 text-xl leading-snug font-bold tracking-[-0.025em] md:text-2xl">
+                “{testimonial.quote}”
+              </blockquote>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </section>
 
-<script>
-	document.querySelectorAll<HTMLElement>('[data-testimonials]').forEach((section) => {
-		const button = section.querySelector<HTMLButtonElement>('[data-testimonials-toggle]');
-		const track = section.querySelector<HTMLElement>('.testimonials-track');
-
-		button?.addEventListener('click', () => {
-			const paused = track?.classList.toggle('is-paused') ?? false;
-			button.setAttribute('aria-pressed', String(paused));
-			button.textContent = paused ? 'Reanudar movimiento' : 'Pausar movimiento';
-		});
-	});
-</script>
-
 <style>
-	.testimonials-viewport {
-		overflow: hidden;
-	}
+  .testimonials-viewport {
+    overflow: hidden;
+  }
 
-	.testimonials-track {
-		display: flex;
-		width: max-content;
-		animation: testimonials-scroll 42s linear infinite;
-		will-change: transform;
-	}
+  .testimonials-track {
+    display: flex;
+    width: max-content;
+    animation: testimonials-scroll 42s linear infinite;
+    will-change: transform;
+  }
 
-	.testimonials-track.is-paused,
-	.testimonials-viewport:hover .testimonials-track {
-		animation-play-state: paused;
-	}
+  .testimonials-viewport:hover .testimonials-track {
+    animation-play-state: paused;
+  }
 
-	.testimonials-group {
-		display: flex;
-		gap: 1rem;
-		padding-right: 1rem;
-	}
+  .testimonials-group {
+    display: flex;
+    gap: 1rem;
+    padding-right: 1rem;
+  }
 
-	.testimonial-card {
-		width: min(82vw, 29rem);
-	}
+  .testimonial-card {
+    width: min(82vw, 29rem);
+  }
 
-	@keyframes testimonials-scroll {
-		to {
-			transform: translateX(-50%);
-		}
-	}
+  @keyframes testimonials-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 
-	@media (min-width: 48rem) {
-		.testimonials-group {
-			gap: 1.5rem;
-			padding-right: 1.5rem;
-		}
-	}
+  @media (min-width: 48rem) {
+    .testimonials-group {
+      gap: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
 
-	@media (prefers-reduced-motion: reduce) {
-		[data-testimonials-toggle] {
-			display: none;
-		}
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-viewport {
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
 
-		.testimonials-viewport {
-			overflow-x: auto;
-			scrollbar-width: thin;
-		}
+    .testimonials-track {
+      animation: none;
+      will-change: auto;
+    }
 
-		.testimonials-track {
-			animation: none;
-			will-change: auto;
-		}
-
-		.testimonials-group[aria-hidden='true'] {
-			display: none;
-		}
-	}
+    .testimonials-group[aria-hidden="true"] {
+      display: none;
+    }
+  }
 </style>
