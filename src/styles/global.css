@@ -84,11 +84,11 @@ a {
 }
 
 .display-hero {
-	max-inline-size: 100%;
-	font-size: clamp(3.1rem, 11vw, 9.5rem);
+	max-inline-size: min(100%, 10em);
+	font-size: clamp(2.7rem, 9.25vw, 8rem);
 	font-weight: 800;
 	letter-spacing: -0.07em;
-	line-height: 0.86;
+	line-height: 1;
 	word-break: normal;
 	overflow-wrap: normal;
 }
