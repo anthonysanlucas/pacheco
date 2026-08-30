@@ -1,0 +1,51 @@
+---
+import type { ContactDetails } from '../data/site';
+
+interface Props {
+	contact: ContactDetails;
+}
+
+const { contact } = Astro.props;
+---
+
+<section id="contacto" class="bg-paper py-24 md:py-32">
+	<div class="page-shell">
+		<h2 class="display-contact m-0 max-w-[10ch] text-balance uppercase" data-reveal>
+			Hablemos de lo que estás enfrentando.
+		</h2>
+
+		{
+			(contact.whatsappUrl || contact.email) && (
+				<div class="mt-20 grid gap-10 border-t border-ink pt-8 md:mt-28 md:grid-cols-12 md:gap-8">
+					{contact.whatsappUrl && (
+						<div class="md:col-span-6">
+							<a
+								href={contact.whatsappUrl}
+								target="_blank"
+								rel="noreferrer"
+								class="group inline-flex min-h-14 items-center gap-5 bg-ink px-6 text-base font-bold tracking-[0.1em] text-paper uppercase no-underline"
+							>
+								Hablemos por WhatsApp
+								<span class="transition-transform duration-200 ease-out group-hover:translate-x-1" aria-hidden="true">→</span>
+							</a>
+						</div>
+					)}
+
+					{contact.email && (
+						<div class="md:col-span-4 md:col-start-9">
+							<p class="m-0 text-xs font-bold tracking-[0.12em] text-muted uppercase">Correo</p>
+							<a href={`mailto:${contact.email}`} class="mt-3 inline-flex min-h-11 items-center text-xl font-bold underline decoration-1 underline-offset-4">
+								{contact.email}
+							</a>
+						</div>
+					)}
+				</div>
+			)
+		}
+
+		<footer class="mt-24 flex flex-wrap items-end justify-between gap-8 border-t border-ink/35 pt-6 text-xs font-bold tracking-[0.12em] uppercase md:mt-32">
+			<p class="m-0">PACHECO — Comunicación con criterio</p>
+			<p class="m-0">© {new Date().getFullYear()}</p>
+		</footer>
+	</div>
+</section>

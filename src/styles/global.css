@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+	--color-paper: #f3f1ec;
+	--color-paper-bright: #fbfaf7;
+	--color-ink: #11110f;
+	--color-muted: #5f5d57;
+	--color-line: #c9c5bc;
+	--font-sans: Arial, Helvetica, sans-serif;
+}
+
+:root {
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--color-ink);
+	background: var(--color-paper);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	min-width: 320px;
+	background: var(--color-paper);
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	min-height: 100%;
+	overflow-x: hidden;
+	background: var(--color-paper);
+	color: var(--color-ink);
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+button,
+a {
+	touch-action: manipulation;
+}
+
+a {
+	color: inherit;
+}
+
+::selection {
+	background: var(--color-ink);
+	color: var(--color-paper);
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-ink);
+	outline-offset: 4px;
+}
+
+.skip-link {
+	position: fixed;
+	top: 0.75rem;
+	left: 0.75rem;
+	z-index: 100;
+	transform: translateY(-160%);
+	background: var(--color-ink);
+	color: var(--color-paper);
+	padding: 0.75rem 1rem;
+	font-weight: 700;
+	text-decoration: none;
+	transition: transform 180ms ease-out;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+.page-shell {
+	width: min(100% - 2rem, 80rem);
+	margin-inline: auto;
+}
+
+.display-hero {
+	font-size: clamp(3.1rem, 11vw, 9.5rem);
+	font-weight: 800;
+	letter-spacing: -0.07em;
+	line-height: 0.86;
+}
+
+.display-section {
+	font-size: clamp(2.9rem, 8vw, 7.5rem);
+	font-weight: 800;
+	letter-spacing: -0.065em;
+	line-height: 0.9;
+}
+
+.display-criterion {
+	font-size: clamp(3.25rem, 10.6vw, 10.25rem);
+	font-weight: 800;
+	letter-spacing: -0.075em;
+	line-height: 0.79;
+}
+
+.display-contact {
+	font-size: clamp(3.4rem, 10vw, 9rem);
+	font-weight: 800;
+	letter-spacing: -0.07em;
+	line-height: 0.86;
+}
+
+[data-motion-ready='true'] [data-reveal] {
+	opacity: 0;
+	transform: translateY(1.75rem);
+	transition:
+		opacity 400ms ease-out,
+		transform 400ms ease-out;
+}
+
+[data-motion-ready='true'] [data-reveal].is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (min-width: 48rem) {
+	.page-shell {
+		width: min(100% - 4rem, 80rem);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}

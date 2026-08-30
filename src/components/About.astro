@@ -1,0 +1,55 @@
+---
+import type { CaseStudy, Identity } from '../data/site';
+
+interface Props {
+	identity: Identity;
+	cases: CaseStudy[];
+}
+
+const { identity, cases } = Astro.props;
+---
+
+<section id="experiencia" class="bg-paper-bright py-24 md:py-32">
+	<div class="page-shell">
+		<div class="grid gap-12 md:grid-cols-12 md:gap-8">
+			<div class="md:col-span-7">
+				<h2 class="display-section m-0 max-w-[9ch] uppercase" data-reveal>El criterio también se construye en situaciones reales.</h2>
+			</div>
+
+			<div class="md:col-span-4 md:col-start-9" data-reveal>
+				{
+					identity.portraitSrc ? (
+						<img
+							src={identity.portraitSrc}
+							width="720"
+							height="900"
+							loading="lazy"
+							alt="Retrato de PACHECO"
+							class="aspect-[4/5] w-full object-cover grayscale"
+						/>
+					) : (
+						<div class="aspect-[4/5] w-full border border-ink/35 bg-[#d7d3ca]" aria-hidden="true"></div>
+					)
+				}
+			</div>
+		</div>
+
+		<div class="mt-24 border-t border-ink md:mt-32">
+			<div class="py-6 md:py-8">
+				<p class="m-0 text-xs font-bold tracking-[0.12em] uppercase md:col-span-4">Experiencia seleccionada</p>
+			</div>
+
+			<ol class="m-0 list-none p-0">
+				{
+					cases.map((caseStudy) => (
+						<li class="grid gap-6 border-t border-ink/35 py-9 md:grid-cols-12 md:gap-8 md:py-12" data-reveal>
+							<span class="text-xs font-bold tabular-nums tracking-[0.12em] md:col-span-1">{caseStudy.number}</span>
+							<h3 class="m-0 max-w-[26ch] text-2xl leading-[1.05] font-bold tracking-[-0.035em] md:col-span-6 md:text-4xl">{caseStudy.title}</h3>
+							{caseStudy.context && <p class="m-0 text-base leading-relaxed text-muted md:col-span-4 md:col-start-9">{caseStudy.context}</p>}
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</div>
+</section>

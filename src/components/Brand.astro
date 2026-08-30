@@ -1,0 +1,28 @@
+---
+import type { Identity } from '../data/site';
+
+interface Props {
+	identity: Identity;
+	inverted?: boolean;
+}
+
+const { identity, inverted = false } = Astro.props;
+---
+
+<span class="inline-flex min-h-11 items-center" data-logo-slot>
+	{
+		identity.logoSrc ? (
+			<img src={identity.logoSrc} width="180" height="48" alt={identity.name} class="h-8 w-auto" />
+		) : (
+			<span
+				class:list={[
+					'inline-flex h-9 items-center border px-3 text-[0.7rem] font-bold tracking-[0.18em]',
+					inverted ? 'border-paper/45 text-paper' : 'border-ink/45 text-ink'
+				]}
+				aria-label={identity.name}
+			>
+				{identity.name}
+			</span>
+		)
+	}
+</span>

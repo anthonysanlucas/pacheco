@@ -1,0 +1,33 @@
+---
+const situations = [
+	'Mañana tengo una entrevista. ¿Qué digo?',
+	'Apareció una crítica contra la empresa. ¿Respondemos?',
+	'Estamos haciendo muchas cosas, pero nadie se entera.',
+	'Mi competencia aparece más. Nosotros casi no.'
+];
+---
+
+<section id="situaciones" class="border-y border-ink bg-paper-bright py-24 md:py-32">
+	<div class="page-shell">
+		<div class="grid gap-12 md:grid-cols-12 md:gap-8">
+			<div class="md:col-span-5">
+				<h2 class="display-section m-0 max-w-[8ch] uppercase" data-reveal>¿Te suena familiar?</h2>
+			</div>
+
+			<ol class="m-0 list-none border-t border-ink p-0 md:col-span-7">
+				{
+					situations.map((situation, index) => (
+						<li class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-ink/35 py-7 md:grid-cols-[4rem_1fr] md:py-9" data-reveal>
+							<span class="pt-1 text-xs font-bold tabular-nums tracking-[0.12em]">{String(index + 1).padStart(2, '0')}</span>
+							<p class="m-0 max-w-[28ch] text-2xl leading-[1.05] font-bold tracking-[-0.035em] md:text-4xl">{situation}</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+
+		<p class="mt-14 mb-0 max-w-[38ch] text-xl leading-snug md:mt-20 md:ml-auto md:text-2xl" data-reveal>
+			La respuesta no siempre es comunicar más. Primero hay que entender qué está realmente en juego.
+		</p>
+	</div>
+</section>
