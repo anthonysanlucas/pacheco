@@ -17,9 +17,23 @@ const { identity } = Astro.props;
 
 		<a
 			href="#contacto"
-			class="inline-flex min-h-11 items-center bg-ink px-5 text-sm font-bold tracking-[0.12em] text-brand uppercase no-underline transition-colors duration-200 hover:bg-[#292925]"
+			data-header-cta
+			class="header-cta inline-flex min-h-11 items-center bg-ink px-5 text-sm font-bold tracking-[0.12em] text-brand uppercase no-underline transition-colors duration-200 hover:bg-[#292925]"
 		>
 			Hablemos
 		</a>
 	</div>
 </header>
+
+<script>
+	const cta = document.querySelector<HTMLElement>('[data-header-cta]');
+	const trigger = document.querySelector<HTMLElement>('[data-header-cta-trigger]');
+
+	if (cta && trigger && 'IntersectionObserver' in window) {
+		const observer = new IntersectionObserver(([entry]) => {
+			cta.dataset.hidden = String(entry.isIntersecting);
+		});
+
+		observer.observe(trigger);
+	}
+</script>

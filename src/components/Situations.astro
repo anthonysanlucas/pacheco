@@ -18,24 +18,13 @@ const situations = [
 				class="m-0 list-none border-t border-ink/70 p-0 md:col-span-7 md:col-start-6 md:row-span-2 md:row-start-1"
 			>
 				{
-					situations.map((situation, index) => (
-						<li
-							class="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-ink/30 py-7 md:grid-cols-[3.5rem_1fr] md:gap-6 md:py-8"
-							data-reveal
-						>
-							<span class="pt-1 text-xs font-bold tabular-nums tracking-[0.12em]">{String(index + 1).padStart(2, '0')}</span>
+					situations.map((situation) => (
+						<li class="border-b border-ink/30 py-7 md:py-8" data-reveal>
 							<p class="m-0 max-w-[27ch] text-2xl leading-[1.08] font-bold tracking-[-0.035em] md:text-[2rem]">{situation}</p>
 						</li>
 					))
 				}
 			</ol>
-
-			<p
-				class="m-0 max-w-[29ch] border-t border-ink/35 pt-6 text-lg leading-snug md:col-span-4 md:row-start-2 md:self-end md:text-xl"
-				data-reveal
-			>
-				La respuesta no siempre es comunicar más. Primero hay que entender qué está realmente en juego.
-			</p>
 		</div>
 	</div>
 </section>

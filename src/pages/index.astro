@@ -4,6 +4,7 @@ import Contact from '../components/Contact.astro';
 import Criterion from '../components/Criterion.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import RealCriterion from '../components/RealCriterion.astro';
 import Situations from '../components/Situations.astro';
 import Testimonials from '../components/Testimonials.astro';
 import { cases, contact, identity } from '../data/site';
@@ -16,6 +17,7 @@ import Layout from '../layouts/Layout.astro';
 	<main id="contenido">
 		<Hero />
 		<Situations />
+		<RealCriterion />
 		<Criterion identity={identity} />
 		<About identity={identity} cases={cases} />
 		<Testimonials />

@@ -1,0 +1,31 @@
+---
+import ChevronsDownIcon from './icons/ChevronsDownIcon.astro';
+---
+
+<button
+	type="button"
+	data-back-to-top
+	aria-label="Volver al inicio"
+	class="back-to-top fixed right-4 bottom-4 z-40 flex size-12 items-center justify-center bg-ink text-brand transition-colors duration-200 hover:bg-[#292925] md:right-8 md:bottom-8"
+>
+	<ChevronsDownIcon size={20} class="rotate-180" />
+</button>
+
+<script>
+	const button = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
+
+	if (button) {
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const toggle = () => {
+			button.dataset.visible = String(window.scrollY > window.innerHeight * 0.6);
+		};
+
+		toggle();
+		window.addEventListener('scroll', toggle, { passive: true });
+
+		button.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+		});
+	}
+</script>
