@@ -9,7 +9,7 @@ interface Props {
 const { identity } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 border-b border-ink/15 bg-paper/95">
+<header class="sticky top-0 z-50 border-b border-ink/15 bg-brand">
 	<div class="page-shell flex min-h-18 items-center justify-between gap-6">
 		<a href="#inicio" aria-label="PACHECO, volver al inicio" class="shrink-0 no-underline">
 			<Brand identity={identity} />
@@ -17,13 +17,9 @@ const { identity } = Astro.props;
 
 		<a
 			href="#contacto"
-			class="group relative inline-flex min-h-11 items-center text-sm font-bold uppercase tracking-[0.12em] no-underline"
+			class="inline-flex min-h-11 items-center bg-ink px-5 text-sm font-bold tracking-[0.12em] text-brand uppercase no-underline transition-colors duration-200 hover:bg-[#292925]"
 		>
-			<span>Hablemos</span>
-			<span
-				class="pointer-events-none absolute inset-x-0 bottom-1 h-px origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100 group-focus-visible:scale-x-100"
-				aria-hidden="true"
-			></span>
+			Hablemos
 		</a>
 	</div>
 </header>

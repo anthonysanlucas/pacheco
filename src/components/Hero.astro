@@ -1,34 +1,75 @@
----
-import ChevronsDownIcon from "./icons/ChevronsDownIcon.astro";
----
-
 <section
   id="inicio"
-  class="page-shell flex min-h-[calc(100svh-4.5rem)] scroll-mt-18 flex-col py-8 md:py-10"
+  class="relative scroll-mt-18 overflow-hidden bg-ink"
 >
-  <div class="flex flex-1 items-center py-12 md:py-16">
-    <h1
-      class="display-hero m-0 min-w-0 max-w-[12ch] text-balance uppercase"
-      aria-label="Estamos haciendo mucho. Pero nadie lo está viendo."
-      data-reveal
+  <h1 class="sr-only">Estamos haciendo mucho. Pero nadie lo está viendo.</h1>
+
+  <div class="relative flex min-h-[calc(100svh-4.5rem)] flex-col md:hidden">
+    <video
+      class="hero-video hero-video--mobile absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-2xl brightness-75"
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
     >
-      Estamos<br />haciendo mucho.<br />Pero nadie<br />lo está viendo.
-    </h1>
+      <source src="/banner.mp4" type="video/mp4" />
+    </video>
+
+    <video
+      class="hero-video hero-video--mobile absolute inset-0 z-10 h-full w-full object-contain"
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    >
+      <source src="/banner.mp4" type="video/mp4" />
+    </video>
   </div>
 
-  <div
-    class="grid gap-7 border-t border-ink/30 pt-6 md:grid-cols-12 md:items-start md:gap-8"
-  >
-    <p class="m-0 max-w-[39ch] text-lg leading-snug md:col-span-5" data-reveal>
-      El problema no es lo que hacemos, sino cómo lo estamos
-      mostrando.
-    </p>
-
-    <a
-      href="#situaciones"
-      class="inline-flex min-h-11 items-center gap-3 text-xs font-bold tracking-[0.12em] uppercase no-underline md:col-span-2 md:col-start-11 md:justify-self-end"
+  <div class="hidden aspect-[1716/740] w-full md:block">
+    <video
+      class="hero-video hero-video--desktop h-full w-full object-cover"
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
     >
-      Sigue explorando <ChevronsDownIcon class="hero-next-arrow" size={18} />
-    </a>
+      <source src="/banner.mp4" type="video/mp4" />
+    </video>
   </div>
 </section>
+
+<script>
+  const mobileVideos = document.querySelectorAll<HTMLVideoElement>(".hero-video--mobile");
+  const desktopVideo = document.querySelector<HTMLVideoElement>(".hero-video--desktop");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const isDesktop = window.matchMedia("(min-width: 768px)");
+
+  const syncVideos = () => {
+    const reduce = reducedMotion.matches;
+    const desktop = isDesktop.matches;
+
+    mobileVideos.forEach((video) => {
+      if (!reduce && !desktop) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    if (desktopVideo) {
+      if (!reduce && desktop) {
+        desktopVideo.play().catch(() => {});
+      } else {
+        desktopVideo.pause();
+      }
+    }
+  };
+
+  syncVideos();
+  reducedMotion.addEventListener("change", syncVideos);
+  isDesktop.addEventListener("change", syncVideos);
+</script>
