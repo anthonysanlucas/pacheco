@@ -1,0 +1,71 @@
+---
+interface Work {
+	year: string;
+	title: string;
+	services: string;
+}
+
+const works: Work[] = [
+	{
+		year: '2018',
+		title: 'Inauguración CEN Quito Bicentenario',
+		services: 'PUBLICIDAD – RELACIONES PÚBLICAS – PRENSA'
+	},
+	{
+		year: '2023',
+		title: 'Créditos Económicos - CRECOS',
+		services: 'MEDIA TRAINING - PRENSA'
+	}
+];
+---
+
+<section id="trabajos" class="bg-paper-bright py-16 md:py-24">
+	<div class="relative" data-reveal>
+		<img
+			class="block w-full"
+			src="/TRABAJOS.png"
+			alt="Andrés Pacheco en la inauguración de CEN Quito Bicentenario y en el media training de Créditos Económicos CRECOS"
+			width="3434"
+			height="1502"
+			loading="lazy"
+			decoding="async"
+		/>
+
+		<ul
+			class="works-caption m-0 hidden list-none p-0 whitespace-nowrap md:absolute md:block"
+			style="left: 16.1%; top: 80.5%; transform: translateY(-50%);"
+		>
+			{
+				works.map((work) => (
+					<li class="mt-[0.9em] leading-[1.35] first:mt-0">
+						<span class="block">
+							{work.year} {work.title}
+						</span>
+						<span class="block">{work.services}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+	<div class="page-shell mt-8 md:hidden">
+		<ul class="m-0 list-none p-0">
+			{
+				works.map((work) => (
+					<li class="mt-4 text-sm leading-[1.4] first:mt-0">
+						<span class="block">
+							{work.year} {work.title}
+						</span>
+						<span class="block">{work.services}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.works-caption {
+		font-size: clamp(0.5rem, 0.72vw, 0.95rem);
+	}
+</style>

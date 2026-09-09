@@ -1,5 +1,4 @@
 ---
-import About from '../components/About.astro';
 import Contact from '../components/Contact.astro';
 import Criterion from '../components/Criterion.astro';
 import Header from '../components/Header.astro';
@@ -7,7 +6,8 @@ import Hero from '../components/Hero.astro';
 import RealCriterion from '../components/RealCriterion.astro';
 import Situations from '../components/Situations.astro';
 import Testimonials from '../components/Testimonials.astro';
-import { cases, contact, identity } from '../data/site';
+import Works from '../components/Works.astro';
+import { identity } from '../data/site';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -19,9 +19,9 @@ import Layout from '../layouts/Layout.astro';
 		<Situations />
 		<RealCriterion />
 		<Criterion identity={identity} />
-		<About identity={identity} cases={cases} />
+		<Works />
 		<Testimonials />
-		<Contact contact={contact} />
+		<Contact />
 	</main>
 </Layout>
 

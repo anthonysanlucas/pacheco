@@ -1,5 +1,77 @@
 @import "tailwindcss";
 
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('../fonts/web/HelveticaNeue-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('../fonts/web/HelveticaNeue-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('../fonts/web/HelveticaNeue-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue Condensed';
+	src: url('../fonts/web/HelveticaNeue-CondensedBold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue Condensed';
+	src: url('../fonts/web/HelveticaNeue-CondensedBlack.woff2') format('woff2');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nadea';
+	src: url('../fonts/web/Nadea-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nadea';
+	src: url('../fonts/web/Nadea-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nadea';
+	src: url('../fonts/web/Nadea-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nadea';
+	src: url('../fonts/web/Nadea-Black.woff2') format('woff2');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
 @theme {
 	--color-paper: #f3f1ec;
 	--color-paper-bright: #fbfaf7;
@@ -7,11 +79,12 @@
 	--color-muted: #5f5d57;
 	--color-line: #c9c5bc;
 	--color-brand: #f5e70a;
-	--font-sans: Arial, Helvetica, sans-serif;
+	--font-sans: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	--font-display: 'Nadea', 'Helvetica Neue', Arial, sans-serif;
 }
 
 :root {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
 	color: var(--color-ink);
 	background: var(--color-paper);
 	font-synthesis: none;
@@ -86,26 +159,29 @@ a {
 
 .display-hero {
 	max-inline-size: min(100%, 10em);
+	font-family: var(--font-display);
 	font-size: clamp(2.7rem, 9.25vw, 8rem);
-	font-weight: 800;
-	letter-spacing: -0.07em;
+	font-weight: 900;
+	letter-spacing: -0.03em;
 	line-height: 1;
 	word-break: normal;
 	overflow-wrap: normal;
 }
 
 .display-section {
+	font-family: var(--font-display);
 	font-size: clamp(2.9rem, 8vw, 7.5rem);
-	font-weight: 800;
-	letter-spacing: -0.065em;
+	font-weight: 900;
+	letter-spacing: -0.03em;
 	line-height: 0.9;
 }
 
 .display-heading {
 	max-inline-size: 100%;
 	margin: 0;
-	font-weight: 800;
-	letter-spacing: -0.06em;
+	font-family: var(--font-display);
+	font-weight: 900;
+	letter-spacing: -0.03em;
 	line-height: 0.9;
 	text-transform: uppercase;
 	text-wrap: balance;
@@ -120,18 +196,20 @@ a {
 
 .display-criterion {
 	max-inline-size: 100%;
+	font-family: var(--font-display);
 	font-size: clamp(3rem, 7.8vw, 7.75rem);
-	font-weight: 800;
-	letter-spacing: -0.07em;
+	font-weight: 900;
+	letter-spacing: -0.03em;
 	line-height: 0.84;
 	word-break: normal;
 	overflow-wrap: normal;
 }
 
 .display-contact {
+	font-family: var(--font-display);
 	font-size: clamp(2.25rem, 9.5vw, 8rem);
-	font-weight: 800;
-	letter-spacing: -0.07em;
+	font-weight: 900;
+	letter-spacing: -0.03em;
 	line-height: 0.84;
 }
 
