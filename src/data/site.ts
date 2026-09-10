@@ -20,7 +20,7 @@ export interface CaseStudy {
 
 export const identity: Identity = {
 	name: 'PACHECO',
-	logoSrc: '/PACHECO-LOGO.webp',
+	logoSrc: '/PACHECO_BRAND_LOGO.svg',
 	profileSrc: '/DECISION.webp',
 	profileAlt: 'Retrato de Andrés Pacheco, asesor de comunicación estratégica',
 	
