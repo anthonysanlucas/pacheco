@@ -24,6 +24,11 @@ const {
 		<meta property="og:locale" content="es_EC" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		{/* Arriba del pliegue el unico texto visible es el CTA del header en
+		    Helvetica-Bold (el h1 del Hero es sr-only y el banner es video). Al
+		    precargarla resuelve directo, sin pintar antes con el fallback. Si
+		    el CTA cambia de cara, hay que mover el preload con el. */}
+		<link rel="preload" href="/fonts/Helvetica-Bold.ttf" as="font" type="font/ttf" crossorigin />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />

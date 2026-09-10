@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
+/* Solo telefonos en vertical: su proporcion va de ~0.45 a ~0.57, mientras que
+   una tablet en vertical no baja de ~0.65. El corte en 3/5 las separa. */
+@custom-variant phone-portrait (@media (max-aspect-ratio: 3/5));
+
+/* Nadea usa `block` y no `swap`: es la cara de marca y pesa ~50 KB, asi que
+   preferimos un instante sin texto antes que pintarlo en Helvetica y verlo
+   saltar. Helvetica se queda en `swap` porque sus TTF pesan ~300 KB y ahi si
+   bloquear el texto de lectura seria peor que el intercambio. */
 @font-face {
 	font-family: 'Nadea';
 	src: url('/fonts/Nadea-Regular.otf') format('opentype');
 	font-weight: 400;
 	font-style: normal;
-	font-display: swap;
+	font-display: block;
 }
 
 @font-face {
@@ -13,7 +21,7 @@
 	src: url('/fonts/Nadea-Black.otf') format('opentype');
 	font-weight: 900;
 	font-style: normal;
-	font-display: swap;
+	font-display: block;
 }
 
 @font-face {
@@ -62,6 +70,30 @@
 }
 
 :root {
+	/* Proporcion del header: logo y CTA escalan con el viewport para conservar
+	   la misma relacion visual en movil y en escritorio. */
+	--header-logo-height: clamp(1.875rem, 5.2vw, 2.5rem);
+	/* El alto no se fija: lo define esta separacion vertical mas la fila de
+	   contenido, asi que el header crece con lo que lleva dentro. El termino
+	   medio es 4.5vw menos media fila, para que la separacion se mantenga
+	   ajustada en telefono y solo se abra cuando hay ancho de sobra. */
+	--header-pad-block: clamp(0.375rem, 4.5vw - 1.375rem, 0.875rem);
+	/* Alto resultante, expuesto porque el header es sticky y tanto el Hero como
+	   scroll-padding-top tienen que descontarlo. La fila mide 2.75rem (el area
+	   tactil minima que comparten logo y CTA) salvo que el logo la supere, de
+	   ahi el max(); el +1px es el borde inferior, que tambien ocupa. */
+	--header-height: calc(
+		max(2.75rem, var(--header-logo-height)) + 2 * var(--header-pad-block) + 1px
+	);
+	--header-gap: clamp(0.75rem, 4vw, 1.5rem);
+	--header-cta-size: clamp(0.8125rem, 2.4vw, 1.125rem);
+	/* Respaldo de centrado optico del CTA, solo para navegadores sin text-box
+	   (ver .header-cta__label). En Helvetica-Bold las tablas de metricas no
+	   coinciden -- hhea pide +0.0898em, OS/2 typo +0.0698em y OS/2 win
+	   -0.0042em, y la fuente no marca USE_TYPO_METRICS -- asi que no hay un
+	   valor exacto. Usamos el de hhea, que es el que corresponde a lo que se
+	   ve renderizado. */
+	--header-cta-optical-shift: 0.09em;
 	font-family: var(--font-sans);
 	color: var(--color-ink);
 	background: var(--color-paper);
@@ -76,7 +108,7 @@ html {
 	min-width: 320px;
 	background: var(--color-paper);
 	scroll-behavior: smooth;
-	scroll-padding-top: 5rem;
+	scroll-padding-top: calc(var(--header-height) + 0.5rem);
 }
 
 body {
@@ -220,11 +252,46 @@ a {
 	}
 }
 
+.header-bar {
+	padding-block: var(--header-pad-block);
+	gap: var(--header-gap);
+}
+
+.brand-logo {
+	display: block;
+	height: var(--header-logo-height);
+	width: auto;
+}
+
 .header-cta {
+	/* Helvetica-Bold: es el peso intermedio de las tres opciones probadas
+	   (densidad de trazo 47.8%, frente al 62.8% de Nadea-Black y el 34.6% de
+	   Nadea-Regular). */
+	font-family: var(--font-helvetica);
+	font-weight: 700;
+	font-size: var(--header-cta-size);
 	transition:
 		opacity 250ms ease-out,
 		transform 250ms ease-out,
 		background-color 200ms;
+}
+
+/* El texto va en su propio elemento para poder recortarle la caja de linea a la
+   altura de mayuscula y la linea base. Asi items-center centra la masa visual
+   del texto y no su caja de metricas, sin depender de la tipografia: no hay
+   constante que recalcular al cambiarla, y el texto tampoco se descoloca
+   mientras la fuente todavia esta cargando. */
+.header-cta__label {
+	text-box: trim-both cap alphabetic;
+}
+
+/* Respaldo donde text-box aun no existe: el desplazamiento medido a mano.
+   Va en la etiqueta y no en el enlace para no pisar el transform de
+   [data-hidden]. */
+@supports not (text-box: trim-both cap alphabetic) {
+	.header-cta__label {
+		translate: 0 var(--header-cta-optical-shift);
+	}
 }
 
 .header-cta[data-hidden='true'] {
