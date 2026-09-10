@@ -20,10 +20,10 @@ export interface CaseStudy {
 
 export const identity: Identity = {
 	name: 'PACHECO',
-	logoSrc: '/pacheco.png',
-	profileSrc: '/DECISION.png',
+	logoSrc: '/PACHECO-LOGO.webp',
+	profileSrc: '/DECISION.webp',
 	profileAlt: 'Retrato de Andrés Pacheco, asesor de comunicación estratégica',
-	// Fotografía temporal de Pavel Danilyuk disponible bajo la licencia de Pexels.
+	
 	portraitSrc: 'https://images.pexels.com/photos/7518946/pexels-photo-7518946.jpeg?auto=compress&cs=tinysrgb&w=900&h=1125&fit=crop',
 	portraitAlt: 'Dos profesionales revisan información durante una reunión de trabajo'
 };
