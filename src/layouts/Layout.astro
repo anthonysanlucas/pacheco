@@ -8,9 +8,11 @@ interface Props {
 }
 
 const {
-	title = 'PACHECO — Comunicación con criterio',
-	description = 'Estrategia y acompañamiento para decidir qué decir, cómo decirlo y cuándo conviene no decir nada.'
+	title = 'PACHECO | Comunicación con criterio',
+	description = 'Acompañamos a autoridades, ejecutivos y organizaciones a plantear estrategias de comunicación con criterio para cada escenario.'
 } = Astro.props;
+
+const faviconSrc = '/PACHECO_BRAND_ISOTIPO.svg';
 ---
 
 <!doctype html>
@@ -19,18 +21,18 @@ const {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta name="author" content="PACHECO" />
 		<meta name="theme-color" content="#fbfaf7" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_EC" />
+		<meta property="og:site_name" content="PACHECO" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		{/* Arriba del pliegue el unico texto visible es el CTA del header en
-		    Helvetica-Bold (el h1 del Hero es sr-only y el banner es video). Al
-		    precargarla resuelve directo, sin pintar antes con el fallback. Si
-		    el CTA cambia de cara, hay que mover el preload con el. */}
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />		
 		<link rel="preload" href="/fonts/Helvetica-Bold.ttf" as="font" type="font/ttf" crossorigin />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href={faviconSrc} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
