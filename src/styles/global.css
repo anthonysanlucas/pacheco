@@ -2,7 +2,7 @@
 
 @font-face {
 	font-family: 'Nadea';
-	src: url('/fonts/Nadea-Regular.ttf') format('truetype');
+	src: url('/fonts/Nadea-Regular.otf') format('opentype');
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
@@ -10,33 +10,41 @@
 
 @font-face {
 	font-family: 'Nadea';
-	src: url('/fonts/Nadea-SemiBold.ttf') format('truetype');
-	font-weight: 600;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Nadea';
-	src: url('/fonts/Nadea-Bold.ttf') format('truetype');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Nadea';
-	src: url('/fonts/Nadea-Black.ttf') format('truetype');
+	src: url('/fonts/Nadea-Black.otf') format('opentype');
 	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
 
 @font-face {
-	font-family: 'Helvetica Neue Custom';
-	src: url('/fonts/HelveticaNeue.ttf') format('truetype');
+	font-family: 'Helvetica Custom';
+	src: url('/fonts/Helvetica.ttf') format('truetype');
 	font-weight: 400;
 	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Custom';
+	src: url('/fonts/Helvetica-Oblique.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Custom';
+	src: url('/fonts/Helvetica-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Helvetica Custom';
+	src: url('/fonts/Helvetica-BoldOblique.ttf') format('truetype');
+	font-weight: 700;
+	font-style: italic;
 	font-display: swap;
 }
 
@@ -44,11 +52,12 @@
 	--color-paper: #fbfaf7;
 	--color-paper-bright: #fbfaf8;
 	--color-ink: #11110f;
+	--color-graphite: #53565a;
 	--color-muted: #5f5d57;
 	--color-line: #c9c5bc;
-	--color-brand: #f5e70a;
-	--font-helvetica: 'Helvetica Neue Custom', Arial, Helvetica, sans-serif;
-	--font-nadea: 'Nadea', 'Helvetica Neue Custom', Arial, sans-serif;
+	--color-brand: #ffdd00;
+	--font-helvetica: 'Helvetica Custom', Helvetica, Arial, sans-serif;
+	--font-nadea: 'Nadea', 'Helvetica Custom', Helvetica, Arial, sans-serif;
 	--font-sans: var(--font-helvetica);
 }
 
