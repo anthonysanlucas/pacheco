@@ -9,13 +9,20 @@
         alt="Andrés Pacheco durante una grabación de pódcast frente al micrófono"
         width="2260"
         height="1287"
-        class="ml-auto block w-full md:w-[76%]"
+        class="ml-auto block w-[76%]"
         loading="lazy"
         decoding="async"
       />
 
+      {/* Misma composicion en todos los anchos: el texto va superpuesto y
+          centrado sobre la imagen, nunca en flujo debajo de ella.
+          El minimo del clamp es 1.75rem y no 2.5rem porque el arco amarillo del
+          WEBP ocupa solo el 0-8% de su ancho y la foto oscura arranca en el 12%:
+          si la letra deja de escalar antes de tiempo, en telefono el texto se
+          mete hasta un 17-24% y cae negro sobre la foto. Con 1.75rem el solape
+          se queda en 8-9% en todo el rango, igual que en escritorio. */}
       <h2
-        class="display-contact m-0 mt-8 !text-[clamp(2.5rem,8.4vw,7.5rem)] !leading-[0.9] !tracking-[-0.01em] uppercase md:absolute md:top-1/2 md:left-[8%] md:mt-0 md:-translate-y-1/2"
+        class="display-contact absolute top-1/2 left-[8%] m-0 -translate-y-1/2 !text-[clamp(1.75rem,8.4vw,7.5rem)] !leading-[0.9] !tracking-[-0.01em] uppercase"
         aria-label="Hablemos"
         data-reveal
       >

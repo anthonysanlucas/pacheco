@@ -14,24 +14,30 @@ const situations = [
 				<h2 class="display-heading display-heading--split" data-reveal>¿Te suena familiar?</h2>
 			</div>
 
-			<p
-				class="m-0 min-w-0 max-w-[30ch] self-end border-t border-ink/35 pt-6 text-sm leading-[1.6] font-medium text-ink md:col-span-4 md:row-start-2"
-				data-reveal
-			>
-				Antes de comunicar hay que entender qué está realmente en juego.
-			</p>
-
+			{/* La medida vive en el <ol> y en `ch` del cuerpo de las preguntas, para
+			    que las rayas terminen donde termina el texto en vez de cruzar toda la
+			    columna. El tamano de letra baja al <p> por herencia. */}
 			<ol
-				class="m-0 list-none border-t border-ink/70 p-0 md:col-span-7 md:col-start-6 md:row-span-2 md:row-start-1"
+				class="m-0 list-none border-t border-ink/70 p-0 text-2xl md:col-span-7 md:col-start-6 md:row-span-2 md:row-start-1 md:max-w-[27ch] md:text-[2rem]"
 			>
 				{
 					situations.map((situation) => (
 						<li class="border-b border-ink/30 py-7 md:py-8" data-reveal>
-							<p class="m-0 max-w-[27ch] text-2xl leading-[1.08] font-bold tracking-[-0.035em] md:text-[2rem]">{situation}</p>
+							<p class="m-0 leading-[1.08] font-bold tracking-[-0.035em]">{situation}</p>
 						</li>
 					))
 				}
 			</ol>
+
+			{/* Va despues del <ol> en el DOM para que en movil el orden de lectura sea
+			    titulo, preguntas y al final esta nota. En md la posicion la fija el
+			    grid con row-start, asi que el escritorio queda igual. */}
+			<p
+				class="m-0 min-w-0 max-w-[30ch] self-end text-base leading-[1.6] text-ink md:col-span-4 md:row-start-2 md:text-lg"
+				data-reveal
+			>
+				Antes de comunicar hay que entender qué está realmente en juego.
+			</p>
 		</div>
 	</div>
 </section>
