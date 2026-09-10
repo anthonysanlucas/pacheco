@@ -1,75 +1,94 @@
-<section
-  id="inicio"
-  class="relative scroll-mt-18 overflow-hidden bg-graphite"
->
-  <h1 class="sr-only">Estamos haciendo mucho. Pero nadie lo está viendo.</h1>
+---
+// Los banners traen el texto quemado en el frame y pegado a los bordes, asi que
+// nunca se recortan: se muestran completos y el sobrante se rellena con el
+// poster difuminado para que no se vean franjas.
+const banners = {
+	landscape: { video: '/BANNER_16_9.mp4', poster: '/BANNER_16_9.webp' },
+	portrait: { video: '/BANNER_9_16.mp4', poster: '/BANNER_9_16.webp' }
+};
+---
 
-  <div class="relative flex min-h-[calc(100svh-4.5rem)] flex-col md:hidden">
-    <video
-      class="hero-video hero-video--mobile absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-2xl brightness-75"
-      loop
-      muted
-      playsinline
-      preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="/banner.mp4" type="video/mp4" />
-    </video>
+<section id="inicio" class="relative scroll-mt-18 overflow-hidden bg-ink">
+	<h1 class="sr-only">Estamos haciendo mucho. Pero nadie lo está viendo.</h1>
 
-    <video
-      class="hero-video hero-video--mobile absolute inset-0 z-10 h-full w-full object-contain"
-      loop
-      muted
-      playsinline
-      preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="/banner.mp4" type="video/mp4" />
-    </video>
-  </div>
+	<div
+		class="relative w-full aspect-[1716/740] max-md:portrait:aspect-auto max-md:portrait:h-[calc(100svh-4.5rem)]"
+	>
+		<div
+			class="absolute inset-0 scale-110 bg-cover bg-center blur-2xl brightness-75"
+			data-hero-backdrop
+			aria-hidden="true"
+		>
+		</div>
 
-  <div class="hidden aspect-[1716/740] w-full md:block">
-    <video
-      class="hero-video hero-video--desktop h-full w-full object-cover"
-      loop
-      muted
-      playsinline
-      preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="/banner.mp4" type="video/mp4" />
-    </video>
-  </div>
+		<video
+			class="relative z-10 block h-full w-full object-contain"
+			data-hero-video
+			data-video-landscape={banners.landscape.video}
+			data-video-portrait={banners.portrait.video}
+			data-poster-landscape={banners.landscape.poster}
+			data-poster-portrait={banners.portrait.poster}
+			autoplay
+			loop
+			muted
+			playsinline
+			preload="metadata"
+			aria-hidden="true"></video>
+	</div>
 </section>
 
 <script>
-  const mobileVideos = document.querySelectorAll<HTMLVideoElement>(".hero-video--mobile");
-  const desktopVideo = document.querySelector<HTMLVideoElement>(".hero-video--desktop");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const isDesktop = window.matchMedia("(min-width: 768px)");
+	const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+	const backdrop = document.querySelector<HTMLElement>('[data-hero-backdrop]');
 
-  const syncVideos = () => {
-    const reduce = reducedMotion.matches;
-    const desktop = isDesktop.matches;
+	if (video) {
+		// Debe coincidir con el variante `max-md:portrait:` del contenedor.
+		const isPortrait = window.matchMedia('(orientation: portrait) and (max-width: 47.99rem)');
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    mobileVideos.forEach((video) => {
-      if (!reduce && !desktop) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
+		let onScreen = true;
 
-    if (desktopVideo) {
-      if (!reduce && desktop) {
-        desktopVideo.play().catch(() => {});
-      } else {
-        desktopVideo.pause();
-      }
-    }
-  };
+		const play = () => {
+			if (reducedMotion.matches || !onScreen) {
+				video.pause();
+			} else {
+				video.play().catch(() => {});
+			}
+		};
 
-  syncVideos();
-  reducedMotion.addEventListener("change", syncVideos);
-  isDesktop.addEventListener("change", syncVideos);
+		// Solo se descarga el banner que corresponde a la orientación actual.
+		const sync = () => {
+			const portrait = isPortrait.matches;
+			const src = portrait ? video.dataset.videoPortrait : video.dataset.videoLandscape;
+			const poster = portrait ? video.dataset.posterPortrait : video.dataset.posterLandscape;
+
+			if (poster) {
+				video.poster = poster;
+				if (backdrop) backdrop.style.backgroundImage = `url("${poster}")`;
+			}
+
+			if (src && video.getAttribute('src') !== src) {
+				video.src = src;
+				video.load();
+			}
+
+			play();
+		};
+
+		sync();
+		isPortrait.addEventListener('change', sync);
+		reducedMotion.addEventListener('change', play);
+
+		if ('IntersectionObserver' in window) {
+			const observer = new IntersectionObserver(
+				([entry]) => {
+					onScreen = entry.isIntersecting;
+					play();
+				},
+				{ threshold: 0.05 }
+			);
+
+			observer.observe(video);
+		}
+	}
 </script>
