@@ -1,12 +1,13 @@
 ---
-import type { Identity } from '../data/site';
+import type { ContactDetails, Identity } from '../data/site';
 import Brand from './Brand.astro';
 
 interface Props {
 	identity: Identity;
+	contact: ContactDetails;
 }
 
-const { identity } = Astro.props;
+const { contact, identity } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 border-b border-ink/15 bg-brand">
@@ -16,8 +17,11 @@ const { identity } = Astro.props;
 		</a>
 
 		<a
-			href="#contacto"
+			href={contact.whatsappUrl}
+			target="_blank"
+			rel="noopener noreferrer"
 			data-header-cta
+			aria-label="Hablar con PACHECO por WhatsApp"
 			class="header-cta inline-flex items-center uppercase no-underline hover:opacity-70"
 		>
 			<span class="header-cta__label">Hablemos</span>

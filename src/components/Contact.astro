@@ -1,35 +1,46 @@
 ---
+import type { ContactDetails } from '../data/site';
+
+interface Props {
+  contact: ContactDetails;
+}
+
+const { contact } = Astro.props;
 ---
 
-<section id="contacto" class="bg-paper py-32 md:py-40">
+<section id="contacto" class="bg-paper py-16 md:py-20 lg:py-24">
   <div class="page-shell">
-    <div class="relative">
+    <div class="relative flex flex-col gap-8 md:block">
+      <div
+        class="relative z-10 max-w-[calc(100vw_-_2rem)] md:absolute md:top-1/2 md:left-[clamp(2rem,4.8vw,4.5rem)] md:-translate-y-1/2 lg:left-[clamp(1.5rem,3vw,3rem)] xl:left-0 2xl:-left-12"
+        data-reveal
+      >
+        <h2
+          class="display-contact m-0 !text-[clamp(4rem,22vw,6rem)] !leading-[0.82] !tracking-[-0.01em] uppercase md:!text-[clamp(4.75rem,8.3vw,9rem)]"
+          aria-label="Hablemos"
+        >
+          <span class="block w-fit">Ha</span>
+          <span class="block w-fit">Ble</span>
+          <span class="block w-fit">Mos</span>
+        </h2>
+
+        <a
+          href={`mailto:${contact.email}`}
+          class="font-helvetica mt-4 ml-1.5 block w-fit max-w-full text-[clamp(0.95rem,4.4vw,1.25rem)] leading-none font-normal text-ink/75 no-underline transition hover:text-ink md:mt-5 md:text-[clamp(1.125rem,1.55vw,1.5rem)]"
+        >
+          {contact.email}
+        </a>
+      </div>
+
       <img
         src="/HABLEMOS.webp"
         alt="Andrés Pacheco durante una grabación de pódcast frente al micrófono"
         width="2260"
         height="1287"
-        class="ml-auto block w-[76%]"
+        class="ml-auto block w-full md:w-[72%] xl:w-[76%] 2xl:w-[86%]"
         loading="lazy"
         decoding="async"
       />
-
-      {/* Misma composicion en todos los anchos: el texto va superpuesto y
-          centrado sobre la imagen, nunca en flujo debajo de ella.
-          El minimo del clamp es 1.75rem y no 2.5rem porque el arco amarillo del
-          WEBP ocupa solo el 0-8% de su ancho y la foto oscura arranca en el 12%:
-          si la letra deja de escalar antes de tiempo, en telefono el texto se
-          mete hasta un 17-24% y cae negro sobre la foto. Con 1.75rem el solape
-          se queda en 8-9% en todo el rango, igual que en escritorio. */}
-      <h2
-        class="display-contact absolute top-1/2 left-[8%] m-0 -translate-y-1/2 !text-[clamp(1.75rem,8.4vw,7.5rem)] !leading-[0.9] !tracking-[-0.01em] uppercase"
-        aria-label="Hablemos"
-        data-reveal
-      >
-        <span class="block">Ha</span>
-        <span class="block">Ble</span>
-        <span class="block">Mos</span>
-      </h2>
     </div>    
   </div>
 </section>

@@ -29,9 +29,8 @@ export const identity: Identity = {
 };
 
 export const contact: ContactDetails = {
-	// Datos temporales para visualizar las acciones. Reemplazar antes de publicar.
-	whatsappUrl: 'https://wa.me/593000000000?text=Hola%2C%20quisiera%20conversar%20con%20PACHECO.',
-	email: 'contacto@pacheco.test'
+	whatsappUrl: 'https://wa.me/593991182763?text=Hola%20Pacheco%2C%20quisiera%20contar%20con%20tu%20asesor%C3%ADa.',
+	email: 'hablemos@pacheco.ec'
 };
 
 export const cases: CaseStudy[] = [
