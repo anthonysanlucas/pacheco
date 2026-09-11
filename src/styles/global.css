@@ -91,15 +91,8 @@
 		var(--header-logo-height) + var(--header-pad-block) + var(--header-pad-block) + 1px
 	);
 	--header-gap: clamp(0.75rem, 4vw, 1.5rem);
-	--header-cta-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
-	--header-cta-tracking: 0.075em;
-	/* Respaldo de centrado optico del CTA, solo para navegadores sin text-box
-	   (ver .header-cta__label). En Helvetica-Bold las tablas de metricas no
-	   coinciden -- hhea pide +0.0898em, OS/2 typo +0.0698em y OS/2 win
-	   -0.0042em, y la fuente no marca USE_TYPO_METRICS -- asi que no hay un
-	   valor exacto. Usamos el de hhea, que es el que corresponde a lo que se
-	   ve renderizado. */
-	--header-cta-optical-shift: 0.09em;
+	--header-cta-size: clamp(1.25rem, 3vw, 1.5rem);
+	--header-cta-optical-shift: 0.02em;
 	font-family: var(--font-sans);
 	color: var(--color-ink);
 	background: var(--color-paper);
@@ -266,19 +259,39 @@ a {
 }
 
 .header-cta {
-	/* Helvetica-Bold: es el peso intermedio de las tres opciones probadas
-	   (densidad de trazo 47.8%, frente al 62.8% de Nadea-Black y el 34.6% de
-	   Nadea-Regular). */
-	font-family: var(--font-helvetica);
-	font-weight: 700;
+	position: relative;
+	font-family: var(--font-nadea);
+	font-weight: 400;
 	font-size: var(--header-cta-size);
-	letter-spacing: var(--header-cta-tracking);
-	line-height: 1;
+	letter-spacing: 0;
+	line-height: 0.9;
 	color: #424241;
 	transition:
 		opacity 250ms ease-out,
 		transform 250ms ease-out,
-		background-color 200ms;
+		color 200ms ease-out;
+}
+
+.header-cta::after {
+	position: absolute;
+	right: 0;
+	bottom: -0.28em;
+	left: 0;
+	height: 0.12em;
+	background: currentColor;
+	content: '';
+	opacity: 0;
+	transform: scaleX(0);
+	transform-origin: right center;
+	transition:
+		opacity 200ms ease-out,
+		transform 220ms ease-out;
+}
+
+.header-cta:hover::after,
+.header-cta:focus-visible::after {
+	opacity: 0.9;
+	transform: scaleX(1);
 }
 
 /* El texto va en su propio elemento para poder recortarle la caja de linea a la
