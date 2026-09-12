@@ -50,7 +50,7 @@ const loopGroups = [0, 1, 2];
                   class="testimonial-card flex min-h-[24rem] flex-col border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
                   data-testimonial-id={testimonial.id}
                 >
-                  <div class="flex items-center gap-4 border-b border-ink/20 pb-6">
+                  <div class="flex min-h-[5.5rem] items-start gap-3 border-b border-ink/20 pb-5 md:min-h-0 md:items-center md:gap-4 md:pb-6">
                     {testimonial.image && (
                       <img
                         src={testimonial.image}
@@ -58,15 +58,15 @@ const loopGroups = [0, 1, 2];
                         height="56"
                         loading="lazy"
                         alt=""
-                        class="size-14 shrink-0 rounded-full object-cover"
+                        class="size-12 shrink-0 rounded-full object-cover md:size-14"
                       />
                     )}
 
-                    <div>
-                      <p class="m-0 text-base leading-tight font-bold">
+                    <div class="min-w-0 pt-0.5 md:pt-0">
+                      <p class="m-0 text-sm leading-snug font-bold md:text-base md:leading-tight">
                         {testimonial.name}
                       </p>
-                      <p class="mt-1 mb-0 text-xs leading-snug text-muted">
+                      <p class="testimonial-role mt-1 mb-0 text-[0.68rem] leading-snug text-muted md:text-xs">
                         {testimonial.role}
                       </p>
                     </div>
@@ -113,14 +113,25 @@ const loopGroups = [0, 1, 2];
           getLoopWidth() > 0,
       );
 
+    const setLoopStart = () => {
+      if (!hasLoop()) return;
+      testimonialsViewport.scrollLeft = getLoopWidth();
+    };
+
     const normalizeScroll = () => {
       if (!hasLoop()) return;
 
       const loopWidth = getLoopWidth();
+      const lowerEdge = loopWidth * 0.5;
+      const upperEdge = loopWidth * 1.5;
 
-      if (testimonialsViewport.scrollLeft >= loopWidth) {
+      if (testimonialsViewport.scrollLeft > upperEdge) {
         isNormalizing = true;
         testimonialsViewport.scrollLeft -= loopWidth;
+        isNormalizing = false;
+      } else if (testimonialsViewport.scrollLeft < lowerEdge) {
+        isNormalizing = true;
+        testimonialsViewport.scrollLeft += loopWidth;
         isNormalizing = false;
       }
     };
@@ -146,10 +157,6 @@ const loopGroups = [0, 1, 2];
       event.preventDefault();
       markUserScrolling();
 
-      if (hasLoop() && testimonialsViewport.scrollLeft <= 0 && dominantDelta < 0) {
-        testimonialsViewport.scrollLeft += getLoopWidth();
-      }
-
       testimonialsViewport.scrollLeft += dominantDelta * scrollBoost;
       normalizeScroll();
     }, { passive: false });
@@ -158,6 +165,9 @@ const loopGroups = [0, 1, 2];
       if (isNormalizing) return;
       normalizeScroll();
     });
+
+    requestAnimationFrame(setLoopStart);
+    window.addEventListener("resize", setLoopStart);
   }
 </script>
 
@@ -200,6 +210,13 @@ const loopGroups = [0, 1, 2];
 
   .testimonial-card {
     width: min(82vw, 29rem);
+  }
+
+  .testimonial-role {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   @keyframes testimonials-scroll {
