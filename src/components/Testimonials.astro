@@ -10,12 +10,6 @@ interface Testimonial {
 }
 
 const items = testimonials as Testimonial[];
-const initials = (name: string) =>
-  name
-    .split(" ")
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("");
 ---
 
 <section
@@ -33,46 +27,44 @@ const initials = (name: string) =>
     </h2>
   </div>
 
-  <div class="testimonials-viewport mt-16 md:mt-20">
-    <div class="testimonials-track">
+  <div
+    class="testimonials-viewport mt-16 md:mt-20"
+    data-testimonials-viewport
+    tabindex="0"
+    aria-label="Testimonios navegables"
+  >
+    <div class="testimonials-track" data-testimonials-track>
       <ul class="testimonials-group m-0 list-none p-0" role="list">
         {
           items.map((testimonial) => (
             <li
-              class="testimonial-card flex min-h-[24rem] flex-col justify-between border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
+              class="testimonial-card flex min-h-[24rem] flex-col border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
               data-testimonial-id={testimonial.id}
             >
               <div class="flex items-center gap-4 border-b border-ink/20 pb-6">
-                {testimonial.image ? (
+                {testimonial.image && (
                   <img
                     src={testimonial.image}
                     width="56"
                     height="56"
                     loading="lazy"
                     alt=""
-                    class="size-14 shrink-0 rounded-full object-cover grayscale"
+                    class="size-14 shrink-0 rounded-full object-cover"
                   />
-                ) : (
-                  <span
-                    class="flex size-14 shrink-0 items-center justify-center rounded-full border border-ink text-sm font-bold tracking-[0.08em]"
-                    aria-hidden="true"
-                  >
-                    {initials(testimonial.name)}
-                  </span>
                 )}
 
                 <div>
-                  <p class="m-0 text-lg leading-tight font-bold">
+                  <p class="m-0 text-base leading-tight font-bold">
                     {testimonial.name}
                   </p>
-                  <p class="mt-1 mb-0 text-sm leading-snug text-muted">
+                  <p class="mt-1 mb-0 text-xs leading-snug text-muted">
                     {testimonial.role}
                   </p>
                 </div>
               </div>
 
-              <blockquote class="m-0 pt-9 text-xl leading-snug font-bold tracking-[-0.025em] md:text-2xl">
-                “{testimonial.quote}”
+              <blockquote class="m-0 pt-8 text-sm leading-relaxed font-medium md:text-base">
+                {testimonial.quote}
               </blockquote>
             </li>
           ))
@@ -83,38 +75,31 @@ const initials = (name: string) =>
         {
           items.map((testimonial) => (
             <li
-              class="testimonial-card flex min-h-[24rem] flex-col justify-between border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
+              class="testimonial-card flex min-h-[24rem] flex-col border border-paper/35 bg-paper-bright p-7 text-ink md:min-h-[27rem] md:p-9"
               data-testimonial-id={testimonial.id}
             >
               <div class="flex items-center gap-4 border-b border-ink/20 pb-6">
-                {testimonial.image ? (
+                {testimonial.image && (
                   <img
                     src={testimonial.image}
                     width="56"
                     height="56"
                     loading="lazy"
                     alt=""
-                    class="size-14 shrink-0 rounded-full object-cover grayscale"
+                    class="size-14 shrink-0 rounded-full object-cover"
                   />
-                ) : (
-                  <span
-                    class="flex size-14 shrink-0 items-center justify-center rounded-full border border-ink text-sm font-bold tracking-[0.08em]"
-                    aria-hidden="true"
-                  >
-                    {initials(testimonial.name)}
-                  </span>
                 )}
                 <div>
-                  <p class="m-0 text-lg leading-tight font-bold">
+                  <p class="m-0 text-base leading-tight font-bold">
                     {testimonial.name}
                   </p>
-                  <p class="mt-1 mb-0 text-sm leading-snug text-muted">
+                  <p class="mt-1 mb-0 text-xs leading-snug text-muted">
                     {testimonial.role}
                   </p>
                 </div>
               </div>
-              <blockquote class="m-0 pt-9 text-xl leading-snug font-bold tracking-[-0.025em] md:text-2xl">
-                “{testimonial.quote}”
+              <blockquote class="m-0 pt-8 text-sm leading-relaxed font-medium md:text-base">
+                {testimonial.quote}
               </blockquote>
             </li>
           ))
@@ -124,19 +109,109 @@ const initials = (name: string) =>
   </div>
 </section>
 
+<script>
+  const testimonialsViewport = document.querySelector<HTMLElement>(
+    "[data-testimonials-viewport]",
+  );
+  const testimonialsTrack = document.querySelector<HTMLElement>(
+    "[data-testimonials-track]",
+  );
+
+  if (testimonialsViewport && testimonialsTrack) {
+    const primaryGroup = testimonialsTrack.querySelector<HTMLElement>(
+      ".testimonials-group:not([aria-hidden])",
+    );
+    const duplicateGroup = testimonialsTrack.querySelector<HTMLElement>(
+      '.testimonials-group[aria-hidden="true"]',
+    );
+
+    const scrollBoost = 1.4;
+    let scrollEndTimer: number | undefined;
+    let isNormalizing = false;
+
+    const getLoopWidth = () => primaryGroup?.scrollWidth ?? 0;
+    const hasLoop = () =>
+      Boolean(
+        duplicateGroup &&
+          getComputedStyle(duplicateGroup).display !== "none" &&
+          getLoopWidth() > 0,
+      );
+
+    const normalizeScroll = () => {
+      if (!hasLoop()) return;
+
+      const loopWidth = getLoopWidth();
+
+      if (testimonialsViewport.scrollLeft >= loopWidth) {
+        isNormalizing = true;
+        testimonialsViewport.scrollLeft -= loopWidth;
+        isNormalizing = false;
+      }
+    };
+
+    const markUserScrolling = () => {
+      testimonialsViewport.dataset.userScrolling = "true";
+      window.clearTimeout(scrollEndTimer);
+      scrollEndTimer = window.setTimeout(() => {
+        delete testimonialsViewport.dataset.userScrolling;
+      }, 500);
+    };
+
+    testimonialsViewport.addEventListener("wheel", (event) => {
+      const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+      const shouldMoveTestimonials = isHorizontalGesture || event.shiftKey;
+
+      if (!shouldMoveTestimonials) return;
+
+      const dominantDelta = event.shiftKey ? event.deltaY : event.deltaX;
+
+      if (dominantDelta === 0) return;
+
+      event.preventDefault();
+      markUserScrolling();
+
+      if (hasLoop() && testimonialsViewport.scrollLeft <= 0 && dominantDelta < 0) {
+        testimonialsViewport.scrollLeft += getLoopWidth();
+      }
+
+      testimonialsViewport.scrollLeft += dominantDelta * scrollBoost;
+      normalizeScroll();
+    }, { passive: false });
+
+    testimonialsViewport.addEventListener("scroll", () => {
+      if (isNormalizing) return;
+      normalizeScroll();
+    });
+  }
+</script>
+
 <style>
   .testimonials-viewport {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .testimonials-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials-viewport:focus-visible {
+    outline: 3px solid var(--color-paper);
+    outline-offset: 0.5rem;
   }
 
   .testimonials-track {
     display: flex;
     width: max-content;
-    animation: testimonials-scroll 42s linear infinite;
+    animation: testimonials-scroll 60s linear infinite;
     will-change: transform;
   }
 
-  .testimonials-viewport:hover .testimonials-track {
+  .testimonials-viewport:hover .testimonials-track,
+  .testimonials-viewport[data-user-scrolling="true"] .testimonials-track {
     animation-play-state: paused;
   }
 
@@ -165,8 +240,7 @@ const initials = (name: string) =>
 
   @media (prefers-reduced-motion: reduce) {
     .testimonials-viewport {
-      overflow-x: auto;
-      scrollbar-width: thin;
+      scrollbar-width: none;
     }
 
     .testimonials-track {
