@@ -13,7 +13,7 @@ const {
 } = Astro.props;
 
 const faviconSrc = '/PACHECO_BRAND_ISOTIPO.svg';
-const ogImageSrc = '/BANNER_16_9.webp';
+const ogImageSrc = 'https://i.postimg.cc/Sx9Z73tQ/PACHECO-ASESOR-COMUNICACION.png';
 const canonicalUrl = 'https://www.pacheco.ec';
 ---
 
@@ -31,7 +31,7 @@ const canonicalUrl = 'https://www.pacheco.ec';
 		<meta property="og:site_name" content="PACHECO" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(ogImageSrc, canonicalUrl).href} />
+		<meta property="og:image" content={ogImageSrc} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="675" />
 		<meta property="og:url" content={canonicalUrl} />
@@ -39,7 +39,7 @@ const canonicalUrl = 'https://www.pacheco.ec';
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={new URL(ogImageSrc, canonicalUrl).href} />
+		<meta name="twitter:image" content={ogImageSrc} />
 		<link rel="preload" href="/fonts/Helvetica-Bold.ttf" as="font" type="font/ttf" crossorigin />
 		<link rel="icon" type="image/svg+xml" href={faviconSrc} />
 		<meta name="generator" content={Astro.generator} />
